@@ -34,12 +34,11 @@
         // Inicializar la graella o recuperar su estado del formulario
         if (isset($_POST['graella'])) {
             $graella = json_decode($_POST['graella'], true);
+            $jugadorActual = $_POST['jugadorActual'] == 1 ? 2 : 1;  // Alternar jugador
         } else {
             $graella = inicialitzarGraella();
+            $jugadorActual = 1;  // Empezar con el jugador 1
         }
-
-        // Jugador actual (para simplicidad, siempre será el jugador 1 por ahora)
-        $jugadorActual = 1;
 
         // Si se ha enviado un movimiento
         if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['columna'])) {
@@ -56,9 +55,10 @@
         // Pintar la graella después de hacer el movimiento
         echo pintarGraella($graella);
 
-        // Guardar el estado actual de la graella en un campo oculto (serializado en JSON)
+        // Guardar el estado actual de la graella y el jugador en campos ocultos (serializado en JSON)
         ?>
         <input type="hidden" name="graella" value='<?php echo json_encode($graella); ?>'>
+        <input type="hidden" name="jugadorActual" value='<?php echo $jugadorActual; ?>'>  <!-- Campo oculto para el jugador actual -->
 
         <div>
             <label for="columna">Número de columna (0-7):</label>
