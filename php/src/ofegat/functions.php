@@ -13,7 +13,7 @@ function comprobarIntentos($paraula, $letra, $paraulaIncompleta) {
     
     // Recorre la palabra y reemplaza los guiones con la letra si la encuentra
     for ($i = 0; $i < strlen($paraula); $i++) {
-        //$paraulaIncompleta[$i] = "_"; //Lo pongo todo con guiones para reiniciar el estado del juego
+        $paraulaIncompleta[$i] = "_"; //Lo pongo todo con guiones para reiniciar el estado del juego
         if ($paraula[$i] == $letra) {
             $paraulaIncompleta[$i] = $letra; // Sustituye el guion
             $letraEncontrada = true;
