@@ -65,7 +65,7 @@
     }
     
     // Función para manejar el movimiento del jugador
-    function ferMoviment($graella, $columna, $jugadorActual) {
+    function ferMoviment(&$graella, $columna, $jugadorActual) {
         // Recorremos la columna desde la última fila hacia la primera
         for ($fila = 5; $fila >= 0; $fila--) {
             if ($graella[$fila][$columna-1] == 0) {
