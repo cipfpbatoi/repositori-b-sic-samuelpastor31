@@ -32,10 +32,8 @@
         // Incluye las funciones desde otro archivo
         require 'functions.php';
 
-        $endevinarAntic = $endevinar;
-
         // Actualiza la palabra incompleta con la función comprobarIntentos
-        $endevinar = comprobarIntentos($paraula, $letra, $endevinar);
+        comprobarIntentos($paraula, $letra, $endevinar);
 
 
         // Missatge de lletra

@@ -4,24 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Joc 4 en ratlla</title>
-    <style>
-        table { border-collapse: collapse; }
-        td {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            border: 2px solid #000;
-            background-color: #fff;
-            text-align: center;
-            vertical-align: middle;
-        }
-        .player1 {
-            background-color: red;
-        }
-        .player2 {
-            background-color: yellow;
-        }
-    </style>
 </head>
 <body>
     <h2>JOC 4 EN RATLLA</h2>
@@ -31,18 +13,18 @@
         // Incluir funciones desde el archivo separado
         require 'functions.php';
 
-        // Inicializar la graella o recuperar su estado del formulario
+        // Inicializar la graella y el jugador actual
         if (isset($_POST['graella'])) {
             $graella = json_decode($_POST['graella'], true);
-            $jugadorActual = $_POST['jugadorActual'] == 1 ? 2 : 1;  // Alternar jugador
+            $jugadorActual = $_POST['jugadorActual'] == 1 ? 2 : 1;
         } else {
             $graella = inicialitzarGraella();
-            $jugadorActual = 1;  // Empezar con el jugador 1
+            $jugadorActual = 1;
         }
 
         // Si se ha enviado un movimiento
         if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['columna'])) {
-            $columna = intval($_POST['columna']); // Obtener la columna seleccionada
+            $columna = intval($_POST['columna']); // Obtener la columna
 
             // Hacer el movimiento
             if (ferMoviment($graella, $columna, $jugadorActual)) {
@@ -52,13 +34,13 @@
             }
         }
 
-        // Pintar la graella después de hacer el movimiento
+        // Pintar graella
         echo pintarGraella($graella);
 
         // Guardar el estado actual de la graella y el jugador en campos ocultos (serializado en JSON)
         ?>
         <input type="hidden" name="graella" value='<?php echo json_encode($graella); ?>'>
-        <input type="hidden" name="jugadorActual" value='<?php echo $jugadorActual; ?>'>  <!-- Campo oculto para el jugador actual -->
+        <input type="hidden" name="jugadorActual" value='<?php echo $jugadorActual; ?>'>
 
         <div>
             <label for="columna">Número de columna (0-7):</label>

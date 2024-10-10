@@ -8,7 +8,7 @@
 <body>
 
 <?php
-function comprobarIntentos($paraula, $letra, $paraulaIncompleta) {
+function comprobarIntentos($paraula, $letra, &$paraulaIncompleta) {
     $letraEncontrada = false;
     
     // Recorre la palabra y reemplaza los guiones con la letra si la encuentra
@@ -21,7 +21,6 @@ function comprobarIntentos($paraula, $letra, $paraulaIncompleta) {
     }
     
     // Devuelve la palabra incompleta actualizada
-    return $paraulaIncompleta;
 }
 ?>
 
