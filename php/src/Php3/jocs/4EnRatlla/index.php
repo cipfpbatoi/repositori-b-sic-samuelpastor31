@@ -43,21 +43,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // Hacer el movimiento
         if (ferMoviment($graella, $columna, $jugadorActual)) {
-            echo "<h3>Jugador $jugadorActual ha jugado en la columna $columna.</h3>";
+            echo "<h3>Jugador $jugadorActual ha jugat en la columna $columna.</h3>";
 
             // Comprobar si el movimiento ha generado un ganador
             if (comprobarGuanyador($graella, $jugadorActual)) {
-                echo "<h2>¡Jugador $jugadorActual ha ganado!</h2>";
+                echo "<h2>¡Jugador $jugadorActual ha guanyat!</h2>";
                 $finalitzat = true;
             }
         } else {
-            echo "<h3>Columna $columna está llena. Intenta otra.</h3>";
+            echo "<h3>Columna $columna está plena. Perds el torn.</h3>";
         }
     }
 
     // Comprobar si la graella está llena
     if (comprobarTaulerPle($graella) && !$finalitzat) {
-        echo "<h2>La partida ha terminado en empate. ¡No hay más movimientos posibles!</h2>";
+        echo "<h2>La partida ha finalitzat en empat. ¡No hi ha més movimients possibles!</h2>";
         $finalitzat = true;
     }
 }
@@ -115,7 +115,7 @@ echo pintarGraella($graella);
             </div>
         </form>
     <?php else: ?>
-        <p>La partida ha finalizado. Intenta otra.</p>
+        <p>La partida ha finalitzat.</p>
     <?php endif; ?>
 
     <!-- Formulario para reiniciar el juego siempre visible -->
