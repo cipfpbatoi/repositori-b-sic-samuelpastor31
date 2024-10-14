@@ -19,7 +19,7 @@ function pintarGraella($graella)
         $html .= "<tr>";
         foreach ($fila as $celda) {
             if ($celda == 0) {
-                $html .= "<td></td>";  // Celda vacía
+                $html .= "<td class='buid'></td>";  // Celda vacía
             } elseif ($celda == 1) {
                 $html .= "<td class='player1'></td>";  // Jugador 1 (rojo)
             } elseif ($celda == 2) {
@@ -32,7 +32,7 @@ function pintarGraella($graella)
     return $html;
 }
 
-// Función para manejar el movimiento del jugador
+
 function ferMoviment(&$graella, $columna, $jugadorActual)
 {
     // Recorremos la columna desde la última fila hacia la primera
@@ -45,7 +45,25 @@ function ferMoviment(&$graella, $columna, $jugadorActual)
     return false;  // Si la columna está llena, no se puede hacer el movimiento
 }
 
-function comprobarTauler($graella)
+// Función para comprobar si hay un ganador (4 en línea)
+function comprobarGuanyador($graella, $jugador){
+    for ($i = 0; $i < 6; $i++) {
+        for ($j = 0; $j < 7; $j++) {
+            if (
+                ($j <= 3 && $graella[$i][$j] == $jugador && $graella[$i][$j + 1] == $jugador && $graella[$i][$j + 2] == $jugador && $graella[$i][$j + 3] == $jugador) ||
+                ($i <= 2 && $graella[$i][$j] == $jugador && $graella[$i + 1][$j] == $jugador && $graella[$i + 2][$j] == $jugador && $graella[$i + 3][$j] == $jugador) ||
+                ($i <= 2 && $j <= 3 && $graella[$i][$j] == $jugador && $graella[$i + 1][$j + 1] == $jugador && $graella[$i + 2][$j + 2] == $jugador && $graella[$i + 3][$j + 3] == $jugador) ||
+                ($i >= 3 && $j <= 3 && $graella[$i][$j] == $jugador && $graella[$i - 1][$j + 1] == $jugador && $graella[$i - 2][$j + 2] == $jugador && $graella[$i - 3][$j + 3] == $jugador)
+            ) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
+// Función para comprobar si la graella está llena (empate)
+function comprobarTaulerPle($graella)
 {
     foreach ($graella as $fila) {
         foreach ($fila as $celda) {
