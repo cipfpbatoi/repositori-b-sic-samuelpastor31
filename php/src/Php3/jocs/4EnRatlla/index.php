@@ -114,11 +114,15 @@ echo pintarGraella($graella);
                 <button type="submit">Jugar</button>
             </div>
         </form>
-    <?php else:        echo"<p>La partida ha finalizado. Intenta otra.</p>"; ?>
-        <form action="" method="post">
-            <button type="submit" name="reiniciar">Reiniciar joc</button>
-        </form>
+    <?php else: ?>
+        <p>La partida ha finalizado. Intenta otra.</p>
     <?php endif; ?>
+
+    <!-- Formulario para reiniciar el juego siempre visible -->
+    <form action="" method="post">
+        <button type="submit" name="reiniciar">Reiniciar joc</button>
+    </form>
+
     <br><a href="?unlogin=true">Tancar sessió</a>
 </body>
 </html>
